@@ -1,9 +1,12 @@
 package com.example.appclass_1
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     fun myClickHandler(view: View) {
         Log.i("MainActivity","button clicked")
+        var dialIntent:Intent=Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"))
+        startActivity(dialIntent)
 
     }
 }
