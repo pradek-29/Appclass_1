@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     fun myClickHandler(view: View) {
         Log.i("MainActivity","button clicked")
         var hIntent = Intent(this,HomeActivity::class.java)
+        hIntent.putExtra("nkey","abdul-android")
         startActivity(hIntent)
     }
 
