@@ -1,5 +1,5 @@
 package com.example.appclass_1.network
-
+import com.squareup.moshi.Json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 //autocad- no cd , floppy drive-- 1.44MB, mark sl no 1,2..
 //java obj into storeable format file
 
-@Serializable
+
 data class MarsPhoto(
     val id: String,
-    @SerialName(value = "img_src")
+    @Json(name = "img_src")
     val imgSrc: String
 )
