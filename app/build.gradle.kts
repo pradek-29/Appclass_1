@@ -8,7 +8,7 @@ android {
     namespace = "com.example.appclass_1"
     compileSdk = 34
     buildFeatures{
-        viewBinding = true
+       dataBinding=true
     }
 
 
