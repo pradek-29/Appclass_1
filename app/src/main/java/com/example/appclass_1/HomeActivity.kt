@@ -20,21 +20,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import com.example.appclass_1.databinding.ActivityHomeBinding
+
 class HomeActivity : AppCompatActivity() {
     //lateinit var brake:Int?
-    lateinit var recyclerview:RecyclerView
+    private lateinit var binding: ActivityHomeBinding
     lateinit var listMarsPhotos:List<MarsPhoto>
     lateinit var marsAdapter: MarsAdapter
     // lateinit var imageView: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_home)
-        recyclerview = findViewById(R.id.recyclerView)
-        recyclerview.layoutManager = LinearLayoutManager(this)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         listMarsPhotos = ArrayList<MarsPhoto>()
         marsAdapter = MarsAdapter(listMarsPhotos)
-        recyclerview.adapter = marsAdapter
+        binding.recyclerView.adapter = marsAdapter
         // brake
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -43,12 +46,13 @@ class HomeActivity : AppCompatActivity() {
         }
         //  if(intent.extras != null) {
         var data = intent.extras?.getString("nkey")
-        Log.i("HomeActivity","data is = "+data)
-        val homeTextView:TextView = findViewById(R.id.tvHome)
-        homeTextView.setText(data)
+        binding.tvHome.setText(data)
     }
-    fun getJson(view: View) {
-        getMarsPhotos()
+    override fun onStart() {
+        super.onStart()
+        binding.btnGet.setOnClickListener{
+            getMarsPhotos()
+        }
     }
     private fun getMarsPhotos() {
         GlobalScope.launch (Dispatchers.Main){
@@ -56,6 +60,7 @@ class HomeActivity : AppCompatActivity() {
 
             val listMarsPhoto = MarsApi.retrofitService.getPhotos()
             marsAdapter.listMarsPhotos = listMarsPhoto
+            binding.imageView.load(listMarsPhoto.get(0).imgSrc)
             marsAdapter.notifyItemRangeChanged(0,listMarsPhoto.size)
             //  listMarsPhotos  = listMarsPhoto
             //marsAdapter.notifyDataSetChanged()

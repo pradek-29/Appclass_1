@@ -24,7 +24,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="53dp"
         android:layout_marginEnd="67dp"
-        android:onClick="getJson"
         android:text="get json"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
