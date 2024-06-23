@@ -40,8 +40,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun getMarsPhotos() {
         GlobalScope.launch {
-            val listResult=MarsApi.retrofitService.getPhotos()
-            Log.i("HomeActivity",listResult)
+            val listMarsPhoto=MarsApi.retrofitService.getPhotos()
+            Log.i("HomeActivity-1st imgsrc",listMarsPhoto.get(0).imgSrc)
         }
     }
 }
