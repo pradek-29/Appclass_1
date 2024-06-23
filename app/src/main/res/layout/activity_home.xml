@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
+
     <TextView
         android:id="@+id/tvHome"
         android:layout_width="wrap_content"
@@ -15,4 +16,15 @@
         android:text="home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnGet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="34dp"
+        android:onClick="getJson"
+        android:text="get json"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHome" />
 </androidx.constraintlayout.widget.ConstraintLayout>

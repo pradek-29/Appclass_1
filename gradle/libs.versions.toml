@@ -11,10 +11,12 @@ material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
 junitJunit = "4.12"
+retrofit = "2.9.0"
 
 [libraries]
 androidx-activity-v180 = { module = "androidx.activity:activity", version.ref = "activityVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+converter-scalar = { module = "com.squareup.retrofit2:converter-scalar", version.ref = "retrofit" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -23,6 +25,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junitJunit" }
+retrofit = { module = "com.squareup:retrofit", version.ref = "retrofit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
