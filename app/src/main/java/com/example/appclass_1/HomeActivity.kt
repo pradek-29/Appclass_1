@@ -1,28 +1,44 @@
 package com.example.appclass_1
-
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
-import com.example.appclass_1.databinding.ActivityHomeBinding
 
+import androidx.appcompat.app.AppCompatActivity
+
+import com.example.appclass_1.database.Item
+import com.example.appclass_1.database.ItemDao
+import com.example.appclass_1.database.ItemRoomDatabase
+import kotlinx.coroutines.Dispatchers
+
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
+    lateinit var dao: ItemDao
+    lateinit var tvHome:TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        // enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+        tvHome = findViewById(R.id.tvHome)
+        var  database = ItemRoomDatabase.getDatabase(this)
+        dao = database.itemDao()
+
+    }
+    fun insertDb(view: View) {
+        GlobalScope.launch {
+            val item = Item(777,"fruits",111.0,22)
+            dao.insert(item)
 
         }
-    override fun onStart() {
-        super.onStart()
     }
 
-    fun insertDb(view: View) {}
+    fun findItemDb(view: View) {
+        GlobalScope.launch(Dispatchers.Main) {
+            val item = dao.getItem(777).first()
+            tvHome.setText(item.itemName)
+        }
+    }
 }
