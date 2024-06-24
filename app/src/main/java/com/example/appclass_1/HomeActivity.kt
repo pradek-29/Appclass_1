@@ -3,10 +3,9 @@ package com.example.appclass_1
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 
+import androidx.lifecycle.ViewModelProvider
 import com.example.appclass_1.database.Item
 import com.example.appclass_1.database.ItemDao
 import com.example.appclass_1.database.ItemRoomDatabase
@@ -17,6 +16,7 @@ import kotlinx.coroutines.launch
 class HomeActivity : AppCompatActivity() {
     lateinit var dao: ItemDao
     lateinit var tvHome:TextView
+    // var count = 0
     lateinit var viewModel: HomeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +24,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         tvHome = findViewById(R.id.tvHome)
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-
-        tvHome.setText(""+viewModel.count)
         var  database = ItemRoomDatabase.getDatabase(this)
         dao = database.itemDao()
 
@@ -44,9 +42,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun incrementCount(view: View) {
-        viewModel.incrementCount()
-        // count++
-        tvHome.setText(""+viewModel.count)
-        //count)
+        viewModel.startTimer()
+        tvHome.setText(""+viewModel._seconds)
     }
 }
